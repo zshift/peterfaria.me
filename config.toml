@@ -2,7 +2,7 @@ baseURL = "https://peterfaria.me/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 author = "Peter Faria"
-title = "It's me, Peter Faria."
+title = "Peter Faria."
 theme = "vitae"
 enableRobotsTXT = true
 
