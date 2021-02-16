@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on My New Hugo Site</title>
-    <link>http://example.org/tags/</link>
-    <description>Recent content in Tags on My New Hugo Site</description>
+    <title>Tags on It&#39;s me, Peter Faria.</title>
+    <link>https://peterfaria.me/tags/</link>
+    <description>Recent content in Tags on It&#39;s me, Peter Faria.</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://peterfaria.me/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
