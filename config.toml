@@ -1,0 +1,4 @@
+baseURL = "https://peterfaria.me/"
+languageCode = "en-us"
+title = "It's me, Peter Faria."
+theme = "ananke"
