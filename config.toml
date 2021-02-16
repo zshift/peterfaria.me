@@ -1,4 +1,32 @@
 baseURL = "https://peterfaria.me/"
 languageCode = "en-us"
+defaultContentLanguage = "en"
+author = "Peter Faria"
 title = "It's me, Peter Faria."
-theme = "ananke"
+theme = "vitae"
+enableRobotsTXT = true
+
+pygmentsstyle = "colorful"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+[params]
+keywords = ["Peter","Faria", "Peter Faria", "blog", "rss"]
+description = "Hi. I'm Peter. This is my blog."
+title = "It's me, Peter Faria."
+subtitle = "All about me."
+
+[[params.social]]
+name = "Github"
+icon = "fab fa-github"
+url = "https://github.com/zshift"
+
+[[params.social]]
+name = "Twitter"
+icon = "fab fa-twitter"
+url = "https://www.twitter.com/z_shift"
+
+[[params.social]]
+name = "RSS"
+icon = "fas fa-rss"
+url = "/index.xml"
