@@ -54,8 +54,65 @@ It's clear to see from this example that the former is much easier to read, but 
 To show the real benefits, let's take a look at a much longer CE.
 
 ```f#
+let downloadData () = task { return "data" }
+let processData data = data
+let notifySubscribers newData = task { () }
+let checkForUpdates () = task { return true }
+let installUpdates () = task { printfn "installing updates!" }
 
+let doLotsOfStuff () = task {
+    let! data = downloadData()
+
+    let processedData = processData data
+
+    do! notifySubscribers processedData
+
+    let! hasUpdates = checkForUpdates()
+
+    if hasUpdates then
+        do! installUpdates()
+}
 ```
+
+And here's the closest "equivalent" of that without CEs that I could come up with
+
+```f#
+open System.Threading.Tasks
+
+let downloadData () = Task.FromResult "data"
+let processData data = data
+let notifySubscribers newData = Task.FromResult ()
+let checkForUpdates () = Task.FromResult true
+let installUpdates () =
+    printfn "Installing updates!"
+    Task.FromResult ()
+
+let doLotsOfStuff () =
+    let dataTask = downloadData ()
+    let nextTask = dataTask.ContinueWith (fun (dataTask: Task<string>) ->
+
+        let data = dataTask.Result
+        let processedData = processData data
+
+        let notifySubscribersTask = notifySubscribers processData
+        let innerTask = notifySubscribersTask.ContinueWith (fun (_: Task) -> 
+
+            let updatesTask = checkForUpdates()
+            let finalTask = updatesTask.ContinueWith (fun (updatesTask: Task<bool>) ->
+                let hasUpdates = updatesTask.Result
+                if hasUpdates then
+                    installUpdates ()
+                else
+                    Task.FromResult ()
+            )
+            finalTask.Unwrap()
+        )
+        innerTask.Unwrap()
+    )
+    nextTask.Unwrap()
+```
+
+It should be obvious from the above example how much easier to read the former is when compared to the latter. Both return the same results and run to completion, outputing `"Installing updates!"`.
 
 ## Gotchas
 CEs are only in scope for the blocks immediately within the CE (with a couple of exceptions, that we'll get to later in the post). For example, the following will _not_ compile.
