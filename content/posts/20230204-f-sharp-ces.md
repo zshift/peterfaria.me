@@ -19,7 +19,7 @@ While many examples online--and even in Microsoft's own documentation--show you 
 The important thing to remember when trying to understand a CE, it's that they're just builders under the hood. In fact, CEs aren't even keywords, they are just an instance of a builder with a conventation based "interface"--wrapped in quotes, because there's no explicit interface definition. The functions and their behaviors are described [here][5].
 
 Here's what the definitions of the [`task`][6] and [`backgroundTask`][6] CEs look like [(Source)][7].
-```f#
+```fsharp
 let task = TaskBuilder()
 let backgroundTask = BackgroundTaskBuilder()
 ```
@@ -29,7 +29,7 @@ Yup. That's it.
 ## Breaking Down a Simple CE
 Let's look at the first example from [Microsoft's documentation][2]
 
-```f#
+```fsharp
 let fetchAndDownload url = async {
     let! data = downloadData url
 
@@ -41,7 +41,7 @@ let fetchAndDownload url = async {
 
 If we were to write this same code without a CE, here's what it would look like
 
-```f#
+```fsharp
 let fetchAndDownload url =
     downloadData url |> Async.map (fun data ->
         let processedData = processData data
@@ -53,7 +53,7 @@ It's clear to see from this example that the former is much easier to read, but 
 
 To show the real benefits, let's take a look at a much longer CE.
 
-```f#
+```fsharp
 let downloadData () = task { return "data" }
 let processData data = data
 let notifySubscribers newData = task { () }
@@ -76,7 +76,7 @@ let doLotsOfStuff () = task {
 
 And here's the closest "equivalent" of that without CEs that I could come up with
 
-```f#
+```fsharp
 open System.Threading.Tasks
 
 let downloadData () = Task.FromResult "data"
@@ -117,7 +117,7 @@ It should be obvious from the above example how much easier to read the former i
 ## Gotchas
 CEs are only in scope for the blocks immediately within the CE (with a couple of exceptions, that we'll get to later in the post). For example, the following will _not_ compile.
 
-```f#
+```fsharp
 let fetchAndLog url = task {
     let! results =
         let! data = downloadData url
@@ -141,7 +141,7 @@ error FS0750: This construct may only be used within computation expressions
 
 The reason we see this error is because we began a new block underneath `let results =`, thus creating a new scope. In order to use the benefits of the CE, we'll have to invoke it again.
 
-```f#
+```fsharp
 let fetchAndLog url = task {
     let! results = task {
         let! data = downloadData url
@@ -157,7 +157,7 @@ let fetchAndLog url = task {
 
 Generally, though, we want to avoid such code, as it can start becoming hard to read. The recommendation here would be to extract the logic of the nested scope out to a separate function. 
 
-```f#
+```fsharp
 let downloadAndProcess url = task {
     let! data = downloadData url
     let processedData = processData data
@@ -175,7 +175,7 @@ By the same token, you cannot mix and match CEs with each other. Once you open a
 
 For example
 
-```f#
+```fsharp
 let fetchAll urls = task {
     let! results = seq {
         for url in urls do
@@ -199,7 +199,7 @@ error FS0795: The use of 'let! x = coll' in sequence expressions is not permitte
 
 The compiler assumes we're still in the `seq` CE, so it doesn't understand that we're trying to call and await a `Task`. To fix this, we must again reintroduce the `task` CE
 
-```f#
+```fsharp
 let fetchAll urls = task {
     let results = seq {
         for url in urls do
@@ -220,7 +220,7 @@ However, this causes an unexpected side effect. Instead of `results` being a seq
 
 In order to deal with such situations, you'll likely need to build a custom CE to handle the composition of multiple CEs together, rethink the structure of your code to avoid mixing the CEs (eg, using `mutable` to build out a mutable list, and get `Task<'a list>`), or use a 3rd-party solution, such as the [FSharp.Control.TaskSeq][8] library, which has already dealt with the complexity and bugs of combinind multiple CEs. 
 
-```f#
+```fsharp
 #r "nuget: FSharp.Control.TaskSeq"
 
 open FSharp.Control
