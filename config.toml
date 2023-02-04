@@ -16,6 +16,22 @@ description = "Hi. I'm Peter. This is my blog."
 title = "It's me, Peter Faria."
 subtitle = "All about me."
 
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    noHl = false
+    style = 'catppuccin-frappe'
+    tabWidth = 4
+
 [[menu.main]]
 name = "Home"
 url = "/"
@@ -35,3 +51,4 @@ url = "https://hachyderm.io/@zshift"
 name = "RSS"
 icon = "fas fa-rss"
 url = "/index.xml"
+
