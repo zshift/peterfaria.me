@@ -18,7 +18,7 @@ subtitle = "All about me."
 
 [markup]
   [markup.highlight]
-    anchorLineNos = false
+    anchorLineNos = true
     codeFences = true
     guessSyntax = false
     hl_Lines = ''
@@ -29,7 +29,7 @@ subtitle = "All about me."
     lineNumbersInTable = true
     noClasses = true
     noHl = false
-    style = 'catppuccin-frappe'
+    style = 'dracula'
     tabWidth = 4
 
 [[menu.main]]
