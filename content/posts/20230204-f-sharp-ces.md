@@ -1,7 +1,7 @@
 ---
 title: "F#"
 date: 2023-02-04T16:39:25-05:00
-draft: true
+draft: false
 ---
 
 # F#
