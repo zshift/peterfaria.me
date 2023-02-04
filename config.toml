@@ -21,20 +21,15 @@ name = "Home"
 url = "/"
 weight = 1
 
-[[menu.main]]
-name = "All The Playlists (WIP)"
-url = "/all-the-playlists"
-weight = 2
-
 [[params.social]]
 name = "Github"
 icon = "fab fa-github"
 url = "https://github.com/zshift"
 
 [[params.social]]
-name = "Twitter"
-icon = "fab fa-twitter"
-url = "https://www.twitter.com/z_shift"
+name = "Mastadon"
+icon = "fab fa-mastadon"
+url = "https://hachyderm.io/@zshift"
 
 [[params.social]]
 name = "RSS"
