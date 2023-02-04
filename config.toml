@@ -28,7 +28,7 @@ url = "https://github.com/zshift"
 
 [[params.social]]
 name = "Mastadon"
-icon = "fab fa-brands fa-mastadon"
+icon = "fab fa-mastodon"
 url = "https://hachyderm.io/@zshift"
 
 [[params.social]]
