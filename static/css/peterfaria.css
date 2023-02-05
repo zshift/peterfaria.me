@@ -1,0 +1,4 @@
+/* Fix to allow  */
+.highlight > div {
+    overflow-x: auto;
+}
