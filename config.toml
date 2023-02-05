@@ -10,6 +10,8 @@ pygmentsstyle = "colorful"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
+custom_css = ["css/peterfaria.css"]
+
 [params]
 keywords = ["Peter","Faria", "Peter Faria", "blog", "rss"]
 description = "Hi. I'm Peter. This is my blog."
