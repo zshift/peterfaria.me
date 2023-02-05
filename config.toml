@@ -20,6 +20,7 @@ title = "It's me, Peter Faria."
 subtitle = "All about me."
 custom_css = ["css/peterfaria.css"]
 customcss = ["css/peterfaria.css"]
+customCSS = ["css/peterfaria.css"]
 
 [markup]
   [markup.highlight]
