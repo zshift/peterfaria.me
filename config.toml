@@ -17,6 +17,7 @@ keywords = ["Peter","Faria", "Peter Faria", "blog", "rss"]
 description = "Hi. I'm Peter. This is my blog."
 title = "It's me, Peter Faria."
 subtitle = "All about me."
+customcss = ["css/peterfaria.css"]
 
 [markup]
   [markup.highlight]
