@@ -11,7 +11,17 @@ pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
 [params]
-keywords = ["Peter","Faria", "Peter Faria", "blog", "rss"]
+keywords = [
+  "Peter",
+  "Faria",
+  "Peter Faria",
+  "blog",
+  "rss",
+  "software development",
+  "software",
+  "developer",
+  "programming",
+  "programmer",]
 description = "Hi. I'm Peter. This is my blog."
 title = "It's me, Peter Faria."
 subtitle = "All about me."
